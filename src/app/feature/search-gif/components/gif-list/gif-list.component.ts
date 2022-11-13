@@ -24,7 +24,7 @@ export class GifListComponent {
       (document.documentElement.scrollTop || document.body.scrollTop) +
       document.documentElement.offsetHeight;
     const max = document.documentElement.scrollHeight;
-    if (pos === max) {
+    if (pos >= max - 10) {
       this.onScrollEvent.emit();
     }
   }
