@@ -1,0 +1,12 @@
+<div class="card">
+  <p-skeleton *ngIf="loading" width="300px" height="250px"></p-skeleton>
+  <img
+    (click)="openDetail()"
+    [ngStyle]="loading ? { visibility: 'hidden' } : { visibility: 'visible' }"
+    (load)="onLoadEventHandler()"
+    [src]="gif.images.fixed_width.url"
+    [height]="loading ? 0 : 250"
+    [width]="loading ? 0 : 300"
+    [alt]="gif.title"
+  />
+</div>

@@ -1,0 +1,16 @@
+.search {
+  text-align: center;
+  padding-top: 20px;
+  input {
+    width: 30%;
+  }
+}
+
+.content {
+  text-align: center;
+  padding-top: 50px;
+}
+
+:host ::ng-deep.dropdown {
+  width: 10%;
+}

@@ -1,0 +1,35 @@
+<div class="search">
+  <h1 class="title">Cerca GIF</h1>
+  <input
+    type="text"
+    pInputText
+    style="margin-right: 1rem"
+    [(ngModel)]="searchInput"
+    placeholder="Cerca un nome"
+  />
+  <button
+    pButton
+    pRipple
+    type="button"
+    (click)="searchGifs()"
+    label="Cerca"
+    class="p-button-success"
+    style="margin-right: 1rem"
+  ></button>
+  <p-dropdown
+    styleClass="dropdown"
+    [options]="selectOptions"
+    [(ngModel)]="selectedOption"
+    optionLabel="name"
+    optionValue="code"
+    placeholder="Filtra per"
+    (onChange)="sortGif()"
+  >
+  </p-dropdown>
+</div>
+<div class="content">
+  <app-gif-list
+    [gifs]="gifDataList"
+    (onScrollEvent)="onScrollHandler()"
+  ></app-gif-list>
+</div>

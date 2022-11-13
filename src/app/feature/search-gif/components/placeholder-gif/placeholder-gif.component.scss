@@ -1,0 +1,14 @@
+:host .card {
+  height: 250px;
+  max-height: 250px;
+  width: 300px;
+  max-width: 300px;
+  overflow: hidden;
+  object-fit: contain;
+  border-radius: 3%;
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.04);
+  }
+}

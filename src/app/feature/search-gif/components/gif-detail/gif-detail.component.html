@@ -1,0 +1,32 @@
+<div class="content">
+  <img [src]="gifData.images.fixed_width.url" />
+  <button
+    *ngIf="!isAlreadyFavorites; else removeFavorites"
+    (click)="addToFavorites()"
+    pTooltip="Aggiungi a i preferiti"
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-check"
+    class="p-button-rounded p-button-text"
+  ></button>
+  <ng-template #removeFavorites>
+    <button
+      type="button"
+      icon="pi pi-times"
+      pButton
+      pRipple
+      pTooltip="Rimuovi dai i preferiti"
+      (click)="removeToFavorites()"
+      class="p-button-rounded p-button-text"
+    ></button>
+  </ng-template>
+  <div class="description-gif">
+    <div class="content-description">
+      <p><strong>Username:</strong> {{ gifData?.username }}</p>
+      <p><strong>Ratings:</strong> {{ gifData?.rating}}</p>
+      <p><strong>Description:</strong> {{ gifData.user?.description }}</p>
+      <p><strong>Import Date Time:</strong> {{ gifData?.import_datetime | date}}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.content {
+  display: flex;
+  flex-direction: row;
+
+  img {
+    height: 370px;
+    width: 450px;
+    border: solid black thin;
+    border-radius: 3%;
+  }
+
+  button {
+    margin-left: 10px;
+  }
+
+  .description-gif {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    font-size: medium;
+  }
+}

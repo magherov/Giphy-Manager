@@ -1,0 +1,7 @@
+<div class="gif-result">
+  <ng-container *ngIf="gifs.length > 0">
+    <div class="gif" *ngFor="let gif of gifs">
+      <app-placeholder-gif [gif]="gif"></app-placeholder-gif>
+    </div>
+  </ng-container>
+</div>
