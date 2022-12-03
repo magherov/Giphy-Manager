@@ -20,6 +20,7 @@ export class GiphyService {
   private _resultLimit: number = 25;
   private _currentSearchKey: string;
   private _giftsRetrieved: GifData[] = [];
+  private _totalCount: number;
   private _currentSort: SortingEnum = SortingEnum.none;
 
   constructor(private http: HttpClient, private _sortSrv: SortGifService) {}
@@ -79,6 +80,8 @@ export class GiphyService {
         return;
       }
 
+      this._totalCount = result.pagination.total_count;
+
       this._giftsRetrieved = this._sortSrv.gifToSorted(
         result.data,
         this._currentSort
@@ -87,6 +90,8 @@ export class GiphyService {
   }
 
   public onScrollNext() {
+    if(this._giftsRetrieved.length === this._totalCount)
+      return;
     this.nextResult().subscribe({
       next: (res) => {
         if (!res) {

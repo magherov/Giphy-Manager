@@ -33,7 +33,7 @@ export class PlaceholderGifComponent implements OnInit {
     this._dialogService.open(GifDetailComponent, {
       data: this.gif,
       header: `"${this.gif.title}"`,
-      width: '60%',
+      width: '50%',
       height: 'auto',
       closable: true
     });
