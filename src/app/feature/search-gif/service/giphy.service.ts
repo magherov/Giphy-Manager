@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { noop, Observable } from 'rxjs';
+import { BehaviorSubject, noop, Observable } from 'rxjs';
 import {
   GifData,
   GiphyResult,
@@ -21,6 +21,7 @@ export class GiphyService {
   private _currentSearchKey: string;
   private _giftsRetrieved: GifData[] = [];
   private _totalCount: number;
+  public scrollServed$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private _currentSort: SortingEnum = SortingEnum.none;
 
   constructor(private http: HttpClient, private _sortSrv: SortGifService) {}
@@ -74,6 +75,7 @@ export class GiphyService {
   }
 
   public searchGifs(searchInput: string) {
+    this.scrollServed$.next(true)
     this.searchEndPoint(searchInput).subscribe((result) => {
       if (!result) {
         this._giftsRetrieved = [];
@@ -102,6 +104,8 @@ export class GiphyService {
           this._giftsRetrieved,
           this._currentSort
         );
+
+        this.scrollServed$.next(true);
       },
       error: noop,
       complete: noop,

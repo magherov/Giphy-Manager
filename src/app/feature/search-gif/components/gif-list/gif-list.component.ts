@@ -3,18 +3,22 @@ import {
   EventEmitter,
   HostListener,
   Input,
-  Output
+  Output,
 } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { GifData } from 'src/app/core/model/gif.interface';
+import { GiphyService } from '../../service/giphy.service';
 
 @Component({
   selector: 'app-gif-list',
   templateUrl: './gif-list.component.html',
-  styleUrls: ['./gif-list.component.scss']
+  styleUrls: ['./gif-list.component.scss'],
 })
 export class GifListComponent {
-  constructor(public dialogService: DialogService) {}
+  constructor(
+    public dialogService: DialogService,
+    private _giphyService: GiphyService
+  ) {}
   @Input() gifs: GifData[];
   @Output() onScrollEvent: EventEmitter<any> = new EventEmitter();
 
@@ -25,7 +29,10 @@ export class GifListComponent {
       document.documentElement.offsetHeight;
     const max = document.documentElement.scrollHeight;
     if (pos >= max - 10) {
-      this.onScrollEvent.emit();
+      if (this._giphyService.scrollServed$.value) {
+        this.onScrollEvent.emit();
+        this._giphyService.scrollServed$.next(false);
+      }
     }
   }
 }
